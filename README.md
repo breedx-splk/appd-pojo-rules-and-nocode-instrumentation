@@ -42,29 +42,70 @@ While slightly different in approach, they did more or less the same thing --
 they allowed instrumentation agents to create telemetry based on user-defined
 runtime configuration.
 
-For example, the bespoke New Relic agent has ["XML Instrumentation"](https://docs.newrelic.com/docs/apm/agents/java-agent/custom-instrumentation/java-instrumentation-xml/). With this,
-users could write lots of angle brackets into a file in order to define how "Transactions" might be created. This file is then passed to the agent via configuration.
-
-AppDynamics offers a capability to instrumentation "plain ol' Java objects",
+For example, AppDynamics offers a capability to instrumentation "plain ol' Java objects",
 often simply referred to as "POJO", with
 [custom match rules](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/26.4.0/configure-instrumentation/transaction-detection-rules/custom-match-rules/java-business-transaction-detection/pojo-entry-points/about-pojo-custom-match-rules). These rules are defined in the
-AppD Controller UI, which then passes this configuration down to the agents.
+AppD Controller UI, which then passes this configuration down to the agents
+via its bespoke, proprietary protocol. The agent will then create
+AppD "Business Transactions" when these rules are matched.
 
-Naturally, DataDog followed suit and constructed its
-[`dd.trace.methods` configuration](https://github.com/DataDog/dd-trace-java/pull/311). Just
-like the other implementation, this allows users to define a set of classes and methods
+Similarly, the bespoke New Relic agent has ["XML
+Instrumentation"](https://docs.newrelic.com/docs/apm/agents/java-agent/custom-instrumentation/java-instrumentation-xml/).
+With this, users could write lots of angle brackets into a file in order to
+define how "Transactions" might be created. This file is then passed to the
+agent via configuration.
+
+Naturally, DataDog created their own similar offering, in the form of its
+[`dd.trace.methods`
+configuration](https://github.com/DataDog/dd-trace-java/pull/311). Just like the
+other implementations, this allows users to define a set of classes and methods
 that should be instrumented, but in this case for tracing.
 
+## The OTel Java Way
 
-## The OTel Way
+The OpenTelemetry Java Agent also provides a flexible way to capture
+telemetry at the method level, via its ["methods
+instrumentation"](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/methods).
+This is a first-class instrumentation that is automatically included
+in the OpenTelemetry distribution. Configuration of the methods instrumentation can be provided through environment variables and system properties,
+but because it can be quite verbose, using declarative config (yaml)
+is recommended.
 
-tbd
+While simple and useful, the instrumentation is quite limited. For instance, it
+doesn't provide a way to discriminate overloaded methods, nor does it allow
+customizing the name of the new span. There is also no ability to surface method
+return value or method parameter values.
+
+Fortunately, the OTel Java Agent is open source, and pull requests that
+enhance the instrumentation capabilities are welcome.
 
 ## The Splunk OTel Way
 
+To provide additional user capabilities, the Splunk distribution of
+OpenTelemetry Java Instrumentation offers ["nocode instrumentation"](https://github.com/signalfx/splunk-otel-java/tree/main/instrumentation/nocode).
+It provides a highly flexible ability to declare instrumentation
+points via class and method, but also allows for:
+
+* customizing the span name
+* customizing the span status field
+* adding custom attributes to the span
+
+All of the above are configured with [JEXL](https://commons.apache.org/proper/commons-jexl/reference/syntax.html) syntax.
+
+This feature is marked "under development" and is subject to breaking changes or
+removal. There is [some
+effort](https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/13590)
+to contribute this instrumentation to OpenTelemery Java Instrumentation upstream,
+but this is very much still a work in progress.
+
 tbd
+experimental - "under development"
 
 AppDynamics POJO instrumentation and Splunk OTel Java
+
+## Migrating from AppDynamics POJO rules
+
+## Conclusion
 
 * the dangers of using this stuff
 * 
