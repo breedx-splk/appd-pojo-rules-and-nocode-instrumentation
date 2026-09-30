@@ -121,8 +121,15 @@ We emphasize this, because POJO rules are intended to trigger BT creation, while
 
 ### What's in a POJO Rule?
 
-The dialog:
+This dialog allows you to define a POJO rule in the AppDynamics controller:
+
 <img width="596" height="674" alt="image" src="https://github.com/user-attachments/assets/21f55d22-6fc5-4f09-b5a1-491e2f5ac392" />
+
+If you simply want to match exactly on a given class and method name, the
+mapping to `nocode` is straightforward:
+
+
+
 
 <img width="283" height="223" alt="image" src="https://github.com/user-attachments/assets/3cae5791-3323-4e8f-b802-2bede254625e" />
 
