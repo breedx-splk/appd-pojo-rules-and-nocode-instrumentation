@@ -140,8 +140,17 @@ and its `nocode` definition should be:
 
 _Note: It is highly recommended to provide the `span_kind`. This tells the Splunk Observability Cloud backend what [kind of span](https://opentelemetry.io/docs/concepts/signals/traces/#span-kind) this is._
 
+Sometimes, POJOs are matched not purely on their exact class name,
+but on another characteristic:
 
 <img width="283" height="223" alt="image" src="https://github.com/user-attachments/assets/3cae5791-3323-4e8f-b802-2bede254625e" />
+
+The [`nocode` documentation](https://github.com/signalfx/splunk-otel-java/tree/main/instrumentation/nocode#more-complex-classmethod-selection) covers these additional, more complicated cases.
+
+The following table maps POJO class matching to nocode expressions:
+
+<<TODO>>
+
 
 Class match predicates:
 <img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
