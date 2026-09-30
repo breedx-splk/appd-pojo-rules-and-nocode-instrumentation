@@ -98,12 +98,26 @@ effort](https://github.com/open-telemetry/opentelemetry-java-instrumentation/pul
 to contribute this instrumentation to OpenTelemery Java Instrumentation upstream,
 but this is very much still a work in progress.
 
-tbd
-experimental - "under development"
-
-AppDynamics POJO instrumentation and Splunk OTel Java
+Because JEXL performs evaluation of arbitrary user expressions, it is both
+powerful and dangerous. A malicious use of JEXL via nocode instrumentation
+could, in the worst case, lead to JVM shutdown or leaking of sensitive data.
 
 ## Migrating from AppDynamics POJO rules
+
+Users who are migrating from AppDynamics to Splunk Observability Cloud may wish
+to migrate their existing legacy POJO definitions. This can help to provide
+coverage in areas that are not readily covered with existing instrumentation in
+the Splunk OTel Java agent.
+
+It's important to first acknowledge that these two observability platforms use
+very different data models. AppDynamics has a bespoke data model centered around
+"Business Transactions" (BTs), while OpenTelemetry-based systems are rooted in
+distributed traces, or simply traces, which are comprised of spans.
+
+> BTs and traces have a lot in common, but they are not the same thing!
+
+We emphasize this, because POJO rules are intended to trigger BT creation, while
+`nocode` instrumentation intends to create spans.
 
 ## Conclusion
 
