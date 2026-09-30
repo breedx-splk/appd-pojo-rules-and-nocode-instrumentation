@@ -119,6 +119,20 @@ distributed traces, or simply traces, which are comprised of spans.
 We emphasize this, because POJO rules are intended to trigger BT creation, while
 `nocode` instrumentation intends to create spans.
 
+### What's in a POJO Rule?
+
+The dialog:
+<img width="596" height="674" alt="image" src="https://github.com/user-attachments/assets/21f55d22-6fc5-4f09-b5a1-491e2f5ac392" />
+
+<img width="283" height="223" alt="image" src="https://github.com/user-attachments/assets/3cae5791-3323-4e8f-b802-2bede254625e" />
+
+Class match predicates:
+<img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
+
+Method match predicates:
+<img width="419" height="267" alt="image" src="https://github.com/user-attachments/assets/11afd479-90c2-4528-8ff7-18f81c7c786d" />
+
+
 ## Conclusion
 
 * the dangers of using this stuff
