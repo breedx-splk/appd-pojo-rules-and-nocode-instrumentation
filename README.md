@@ -55,13 +55,13 @@ instrumentation isn't possible, what can we do?
 
 # Declarative Instrumentation
 
-The early generation of software observability vendors all oferred their own
+The early generation of software observability vendors all offered their own
 unique way of allowing users to define instrumentation points declaratively.
 While slightly different in approach, they did more or less the same thing --
 they allowed instrumentation agents to create telemetry based on user-defined
 runtime configuration.
 
-For example, AppDynamics offers a capability to instrumentation "plain ol' Java objects",
+For example, AppDynamics offers a capability to instrument "plain ol' Java objects",
 often simply referred to as "POJO", with
 [custom match rules](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/26.4.0/configure-instrumentation/transaction-detection-rules/custom-match-rules/java-business-transaction-detection/pojo-entry-points/about-pojo-custom-match-rules). These rules are defined in the
 AppD Controller UI, which then passes this configuration down to the agents
@@ -114,7 +114,7 @@ All of the above are configured with [JEXL](https://commons.apache.org/proper/co
 This feature is marked "under development" and is subject to breaking changes or
 removal. There is [some
 effort](https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/13590)
-to contribute this instrumentation to OpenTelemery Java Instrumentation upstream,
+to contribute this instrumentation to OpenTelemetry Java Instrumentation upstream,
 but this is very much still a work in progress.
 
 Because JEXL performs evaluation of arbitrary user expressions, it is both
@@ -156,7 +156,7 @@ a method of `doSomething()` would appear like this in AppDynamics:
 and its `nocode` YAML definition should be:
 ```yaml
 - class: com.example.MyHotClass
-  method: doScomething
+  method: doSomething
   span_kind: CLIENT
 ```
 
@@ -174,7 +174,7 @@ The [`nocode` documentation](https://github.com/signalfx/splunk-otel-java/tree/m
 Please note that Java class names should always be fully qualified with the
 complete package name.
 
-> Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names sould be escaped with a backslash.
+> Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names should be escaped with a backslash.
 
 #### Matching by Interface
 
@@ -222,7 +222,7 @@ can use the following `nocode` YAML snippet:
 ### Other Matching Operations
 
 In addition to the precise "Equals" match, AppDynamics POJO definitions
-can use several other, more flexible matching prediates. This section
+can use several other, more flexible matching predicates. This section
 will describe those and how to map them to `nocode` yaml definitions:
 
 <img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
@@ -262,7 +262,7 @@ string marker. For example, to match any class that ends with the name
   span_kind: SERVER
 ```
 
-This definition matches both `com.example.common.Util` and `com.example.uncommmon.Util` , but it would not match `com.example.common.Utilities`.
+This definition matches both `com.example.common.Util` and `com.example.uncommon.Util`, but it would not match `com.example.common.Utilities`.
 
 #### "Contains"
 
@@ -287,7 +287,7 @@ This would match `com.example.FilterFactory` and `com.example.AbstractFilterFact
 The AppD "Matches Reg Ex" is the same as the `nocode` `name_regex`.
 
 Because over-matching with overly broad match expressions could generate
-undesired results, regular expressionss should always be used with care.
+undesired results, regular expressions should always be used with care.
 
 #### "Is in List"
 
@@ -335,11 +335,11 @@ Sometimes, you just have to do it the hard way. Fortunately, there are
 options in the form of declarative instrumentation to help in these
 situations.
 
-The Splunk Distribution of OpenTelemetry Java Instrumenation provides a
+The Splunk Distribution of OpenTelemetry Java Instrumentation provides a
 powerful `nocode` instrumentation module that can be configured to cover
 most of the common use cases from the AppDynamics POJO rule definitions.
 This allows OpenTelemetry spans to be created for user code or third-party
-libraries for which there is no existing instrumenation.
+libraries for which there is no existing instrumentation.
 
 The mappings described in this article can be leveraged by users who
 are migrating from AppDynamics to Splunk Observability Cloud and have
@@ -350,4 +350,3 @@ written rule could have negative impact on an application. At worst, the
 evaluation of an arbitrary Java expression could cause the application to
 terminate unexpectedly or to degrade performance. Another mistake might generate
 unwanted volumes of telemetry.
-
