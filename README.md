@@ -3,7 +3,7 @@
 
 Sometimes, you just have to do it the hard way.
 
-## What's the Challenge?
+# What's the Challenge?
 
 Instrumentation agents are highly advanced bits of software that manipulate
 bytecode, intercept library calls, and wrap and observe other software in order
@@ -34,7 +34,7 @@ changes or even talk with the development team!
 In these extreme cases, when auto-instrumentation doesn't suffice and manual
 instrumentation isn't possible, what can we do?
 
-## Declarative Instrumentation
+# Declarative Instrumentation
 
 The early generation of software observability vendors all oferred their own
 unique way of allowing users to define instrumentation points declaratively.
@@ -61,7 +61,7 @@ configuration](https://github.com/DataDog/dd-trace-java/pull/311). Just like the
 other implementations, this allows users to define a set of classes and methods
 that should be instrumented, but in this case for tracing.
 
-## The OTel Java Way
+# The OTel Java Way
 
 The OpenTelemetry Java Agent also provides a flexible way to capture
 telemetry at the method level, via its ["methods
@@ -79,7 +79,7 @@ return value or method parameter values.
 Fortunately, the OTel Java Agent is open source, and pull requests that
 enhance the instrumentation capabilities are welcome.
 
-## The Splunk OTel Way
+# The Splunk OTel Way
 
 To provide additional user capabilities, the Splunk distribution of
 OpenTelemetry Java Instrumentation offers ["nocode instrumentation"](https://github.com/signalfx/splunk-otel-java/tree/main/instrumentation/nocode).
@@ -102,7 +102,7 @@ Because JEXL performs evaluation of arbitrary user expressions, it is both
 powerful and dangerous. A malicious use of JEXL via nocode instrumentation
 could, in the worst case, lead to JVM shutdown or leaking of sensitive data.
 
-## Migrating from AppDynamics POJO rules
+# Migrating from AppDynamics POJO rules
 
 Users who are migrating from AppDynamics to Splunk Observability Cloud may wish
 to migrate their existing legacy POJO definitions. This can help to provide
@@ -119,7 +119,7 @@ distributed traces, or simply traces, which are comprised of spans.
 We emphasize this, because POJO rules are intended to trigger BT creation, while
 `nocode` instrumentation intends to create spans.
 
-### What's in a POJO Rule?
+## What's in a POJO Rule?
 
 This dialog allows you to define a POJO rule in the AppDynamics controller:
 
@@ -143,7 +143,7 @@ and its `nocode` YAML definition should be:
 
 _Note: It is highly recommended to provide the `span_kind`. This tells the Splunk Observability Cloud backend what [kind of span](https://opentelemetry.io/docs/concepts/signals/traces/#span-kind) this is._
 
-#### Other Class Matches
+### Other Class Matches
 
 Sometimes, POJOs are matched not purely on their exact class name,
 but on other class characteristics:
@@ -157,7 +157,7 @@ complete package name.
 
 > Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names sould be escaped with a backslash.
 
-##### Matching by Interface
+#### Matching by Interface
 
 <img width="385" height="117" alt="image" src="https://github.com/user-attachments/assets/67ae5fa6-fee2-4db0-8e52-f1e5b390692e" />
 
@@ -176,7 +176,7 @@ use the following:
 
 > _Note: It is not currently possible to perform non-exact matches with `super_type` class selectors in `nocode`_
 
-##### Matching by Superclass
+#### Matching by Superclass
 
 Similar to the interface match (above), some POJO rules might match
 on a classes parentage or ancestry via "Super Class".
@@ -196,17 +196,17 @@ can use the following `nocode` YAML snippet:
 
 > _Note: It is not currently possible to perform non-exact matches with `super_type` class selectors in `nocode`_
 
-##### Matching by Annotation
+#### Matching by Annotation
 
 <img width="377" height="111" alt="image" src="https://github.com/user-attachments/assets/711f3d68-5f6a-40c8-b907-ed7ae056991a" />
 
-#### Other Matching Operations
+### Other Matching Operations
 
 In addition to the precise "Equals" match, AppDynamics POJO definitions
 can use several other, more flexible matching prediates. This section
 will describe those and how to map them to `nocode` yaml definitions:
 
-##### "Starts With"
+#### "Starts With"
 
 <img width="383" height="53" alt="image" src="https://github.com/user-attachments/assets/cfdbfdba-9f24-495e-9cf8-c9d0fcf1f3aa" />
 
@@ -225,7 +225,7 @@ of the string. For example, to match any class that starts with the name
 This definition matches both `com.example.FooBarImpl` and
 `com.example.FoodFight` classes.
 
-##### "Ends With"
+#### "Ends With"
 
 <img width="386" height="51" alt="image" src="https://github.com/user-attachments/assets/66d27913-706b-4f24-a679-3bce599361a1" />
 
@@ -243,7 +243,7 @@ string marker. For example, to match any class that ends with the name
 
 This definition matches both `com.example.common.Util` and `com.example.uncommmon.Util` , but it would not match `com.example.common.Utilities`.
 
-##### "Contains"
+#### "Contains"
 
 <img width="388" height="50" alt="image" src="https://github.com/user-attachments/assets/890ab424-f2e8-493b-8682-995cf28860c2" />
 
@@ -261,14 +261,14 @@ desired string. For example, to match any class that contains the string
 
 This would match `com.example.FilterFactory` and `com.example.AbstractFilterFactoryBaseImpl`.
 
-##### "Matches Reg Ex"
+#### "Matches Reg Ex"
 
 The AppD "Matches Reg Ex" is the same as the `nocode` `name_regex`.
 
 Because over-matching with overly broad match expressions could generate
 undesired results, regular expressionss should always be used with care.
 
-##### "Is in List"
+#### "Is in List"
 
 <img width="383" height="75" alt="image" src="https://github.com/user-attachments/assets/971155bd-c916-48ef-99e3-053dcca3ad6d" />
 
@@ -285,7 +285,7 @@ POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
   span_kind: SERVER
 ```
 
-##### "Is Not Empty"
+#### "Is Not Empty"
 
 <img width="172" height="49" alt="image" src="https://github.com/user-attachments/assets/f5b81409-a7b4-4759-a9b4-4cb5a25f37be" />
 
@@ -299,7 +299,7 @@ Method match predicates:
 <img width="419" height="267" alt="image" src="https://github.com/user-attachments/assets/11afd479-90c2-4528-8ff7-18f81c7c786d" />
 
 
-## Conclusion
+# Conclusion
 
 * the dangers of using this stuff
 * 
