@@ -313,6 +313,12 @@ POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
 I have no idea what this is, and I think it's unlikely that you have POJO rules that leverage this. If you do,
 please [reach out and let me know](jplumb@cisco.com).
 
+### Inverting the method name
+
+
+<img width="449" height="78" alt="image" src="https://github.com/user-attachments/assets/48a2e697-b298-4875-82df-fc571d710b37" />
+
+
 ---
 
 Method match predicates:
