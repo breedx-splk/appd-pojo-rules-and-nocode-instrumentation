@@ -157,6 +157,12 @@ complete package name.
 
 > Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names sould be escaped with a backslash.
 
+#### Other Matching Operations
+
+In addition to the precise "Equals" match, AppDynamics POJO definitions
+can use several other, more flexible matching prediates. This section
+will describe those and how to map them to `nocode` yaml definitions:
+
 ##### "Starts With"
 
 <img width="383" height="53" alt="image" src="https://github.com/user-attachments/assets/cfdbfdba-9f24-495e-9cf8-c9d0fcf1f3aa" />
@@ -170,6 +176,7 @@ of the string. For example, to match any class that starts with the name
 - class:
     name_regex: '^com\.example\.Foo.*'
   method: bar
+  span_kind: SERVER
 ```
 
 This definition matches both `com.example.FooBarImpl` and
@@ -188,6 +195,7 @@ string marker. For example, to match any class that ends with the name
 - class:
     name_regex: '.*common.Util$'
   method: beep
+  span_kind: SERVER
 ```
 
 This definition matches both `com.example.common.Util` and `com.example.uncommmon.Util` , but it would not match `com.example.common.Utilities`.
@@ -205,13 +213,14 @@ desired string. For example, to match any class that contains the string
 - class:
     name_regex: '.*FilterFactory.*'
   method: filter
+  span_kind: SERVER
 ```
 
 This would match `com.example.FilterFactory` and `com.example.AbstractFilterFactoryBaseImpl`.
 
 ##### "Matches Reg Ex"
 
-The AppD "Matches Reg Ex" is the same as the `nocode` `name_regex`. 
+The AppD "Matches Reg Ex" is the same as the `nocode` `name_regex`.
 
 Because over-matching with overly broad match expressions could generate
 undesired results, regular expressionss should always be used with care.
@@ -230,6 +239,7 @@ POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
       - name: com.example.Foo
       - name: com.example.Bar
   method: bedazzle
+  span_kind: SERVER
 ```
 
 ##### "Is Not Empty"
