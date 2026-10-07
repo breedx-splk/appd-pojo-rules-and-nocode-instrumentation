@@ -105,9 +105,9 @@ OpenTelemetry Java Instrumentation offers ["nocode instrumentation"](https://git
 It provides a highly flexible ability to declare instrumentation
 points via class and method, but also allows for:
 
-* customizing the span name
-* customizing the span status field
-* adding custom attributes to the span
+- customizing the span name
+- customizing the span status field
+- adding custom attributes to the span
 
 All of the above are configured with [JEXL](https://commons.apache.org/proper/commons-jexl/reference/syntax.html) syntax.
 
@@ -329,13 +329,28 @@ Choosing this allows you to invert the match for the method name. In other words
   span_kind: SERVER
 ```
 
----
-
-Method match predicates:
-<img width="419" height="267" alt="image" src="https://github.com/user-attachments/assets/11afd479-90c2-4528-8ff7-18f81c7c786d" />
-
-
 # Conclusion
+
+Sometimes, you just have to do it the hard way. Fortunately, there are
+options in the form of declarative instrumentation to help in these
+situations.
+
+The Splunk Distribution of OpenTelemetry Java Instrumenation provides a
+powerful `nocode` instrumentation module that can be configured to cover
+most of the common use cases from the AppDynamics POJO rule definitions.
+This allows OpenTelemetry spans to be created for user code or third-party
+libraries for which there is no existing instrumenation.
+
+The mappings described in this article can be leveraged by users who
+are migrating from AppDynamics to Splunk Observability Cloud and have
+existing gaps that need instrumentation coverage for continuity. A word of caution: Declarative instrumentation, like `nocode`, should usually be used as a last resort after determining that other instrumentation doesn't exist or that manual instrumentation cannot be added.
+
+Caution should also be used when defining these rules, because an improperly
+written rule could have negative impact on an application. At worst, the
+evaluation of an arbitrary Java expression could cause the application to
+terminate unexpectedly or to degrade performance. Another mistake might generate
+unwanted volumes of telemetry.
+
 
 * the dangers of using this stuff
 * 
