@@ -157,6 +157,18 @@ complete package name.
 
 > Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names sould be escaped with a backslash.
 
+##### Matching by Interface
+
+<img width="385" height="117" alt="image" src="https://github.com/user-attachments/assets/67ae5fa6-fee2-4db0-8e52-f1e5b390692e" />
+
+##### Matching by Superclass
+
+<img width="378" height="116" alt="image" src="https://github.com/user-attachments/assets/2235323c-d788-42cf-b8d3-a54a229fb579" />
+
+##### Matching by Annotation
+
+<img width="377" height="111" alt="image" src="https://github.com/user-attachments/assets/711f3d68-5f6a-40c8-b907-ed7ae056991a" />
+
 #### Other Matching Operations
 
 In addition to the precise "Equals" match, AppDynamics POJO definitions
