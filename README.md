@@ -188,7 +188,6 @@ string marker. For example, to match any class that ends with the name
 
 This definition matches both `com.example.common.Util` and `com.example.uncommmon.Util` , but it would not match `com.example.common.Utilities`.
 
-
 ##### "Contains"
 
 A contains expression essentially combines the above "starts with" and "ends
@@ -204,9 +203,18 @@ desired string. For example, to match any class that contains the string
 
 This would match `com.example.FilterFactory` and `com.example.AbstractFilterFactoryBaseImpl`.
 
-* Matches Reg Ex
-* Is in List
-* Is Not Empty
+##### "Matches Reg Ex"
+
+The AppD "Matches Reg Ex" is the same as the `nocode` `name_regex`. 
+
+Because over-matching with overly broad match expressions could generate
+undesired results, regular expressionss should always be used with care.
+
+##### "Is in List"
+
+
+
+##### "Is Not Empty"
 
 
 The following table maps POJO class matching to nocode expressions:
