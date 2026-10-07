@@ -43,12 +43,11 @@ the developer maintenance burden and, if not done with care, can clutter up the
 readability of core business logic.
 
 Sometimes, manual instrumentation isn't possible or practical. While this should
-indeed be uncommon, it happens. Users sometimes need to operate 3rd-party,
-closed-source, or expensive or niche software for which there exist no good
-instrumentation modules. In some organizations, the tribal knowledge of how to
-even build internal software has been lost to time and isn't possible. In other
-companies, the observability team may not be permitted to make code-level
-changes or even talk with the development team!
+indeed be uncommon, it happens. This typically falls into one of three common scenarios:
+
+- 3rd-party precompiled binary software that cannot be source modified.
+- Organizational doctrine that prohibits observability teams from modifying source code.
+- Legacy code that is too risky or even impossible to rebuild or redeploy.
 
 In these extreme cases, when auto-instrumentation doesn't suffice and manual
 instrumentation isn't possible, what can we do?
@@ -219,6 +218,25 @@ can use the following `nocode` YAML snippet:
 
 <img width="377" height="111" alt="image" src="https://github.com/user-attachments/assets/711f3d68-5f6a-40c8-b907-ed7ae056991a" />
 
+AppDynamics POJO rule definitions allow users to select classes that have a certain annotation. For example, you might have targeted a class that looks like this:
+
+```java
+
+@MakeBizTransaction
+class MyUsefulClass { 
+  ...
+}
+```
+
+where the `@MakeBizTransaction` is fully qualified to
+`com.example.MakeBizTransaction`. At the time of this writing, there is no means
+of matching classes by annotation in `nocode` YAML expressions. This remains an
+item for future enhancement.
+
+> _Note: Annotations must have a [RUNTIME retention
+> policy](https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/RetentionPolicy.html#RUNTIME)
+> to be useful here._
+
 ### Other Matching Operations
 
 In addition to the precise "Equals" match, AppDynamics POJO definitions
@@ -313,7 +331,7 @@ POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
 I have no idea what this is, and I think it's unlikely that you have POJO rules that leverage this. If you do,
 please [reach out and let me know](jplumb@cisco.com).
 
-### Inverting the method name
+### Inverting the Method Name
 
 The AppDynamics POJO rule creation dialog contains a gear icon that hides the NOT capability:
 
@@ -328,6 +346,13 @@ Choosing this allows you to invert the match for the method name. In other words
       name: swizzle
   span_kind: SERVER
 ```
+
+## What About Splitting?
+
+The "Add Rule" screen also has a section that allows AppDynamics users to
+split Business Transactions. Because the OpenTelemetry and Splunk Observability Cloud data model use transactions and spans, Business Transactions are not applicable.
+
+Simply put, there is no way to split a "Business Transaction" in `nocode` because there are no Business Transactions. All Spans will either be the root span of a new Trace, or will be created within the existing trace context.
 
 # Conclusion
 
