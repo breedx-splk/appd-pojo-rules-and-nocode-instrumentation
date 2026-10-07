@@ -351,6 +351,3 @@ evaluation of an arbitrary Java expression could cause the application to
 terminate unexpectedly or to degrade performance. Another mistake might generate
 unwanted volumes of telemetry.
 
-
-* the dangers of using this stuff
-* 
