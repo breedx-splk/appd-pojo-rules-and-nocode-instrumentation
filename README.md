@@ -143,10 +143,10 @@ and its `nocode` YAML definition should be:
 
 _Note: It is highly recommended to provide the `span_kind`. This tells the Splunk Observability Cloud backend what [kind of span](https://opentelemetry.io/docs/concepts/signals/traces/#span-kind) this is._
 
-#### Other Class Name Matches
+#### Other Class Matches
 
 Sometimes, POJOs are matched not purely on their exact class name,
-but on another operation or match predicate expression:
+but on other class characteristics:
 
 <img width="283" height="223" alt="image" src="https://github.com/user-attachments/assets/3cae5791-3323-4e8f-b802-2bede254625e" />
 
@@ -196,7 +196,7 @@ This definition matches both `com.example.common.Util` and `com.example.uncommmo
 
 <img width="388" height="50" alt="image" src="https://github.com/user-attachments/assets/890ab424-f2e8-493b-8682-995cf28860c2" />
 
-A contains expression essentially combines the above "starts with" and "ends
+A "Contains" expression essentially combines the above "starts with" and "ends
 with" matches. Simply include a wildcard `.*` prefix and suffix around the
 desired string. For example, to match any class that contains the string
 `FilterFactory`, you could use the following `nocode` YAML expression:
@@ -220,7 +220,17 @@ undesired results, regular expressionss should always be used with care.
 
 <img width="383" height="75" alt="image" src="https://github.com/user-attachments/assets/971155bd-c916-48ef-99e3-053dcca3ad6d" />
 
+The "Is in List" matcher allows several class names to be matched.
+For example, you might want to match both `com.example.Foo` and `com.example.Bar`
+POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
 
+```yaml
+- class:
+    or:
+      - name: com.example.Foo
+      - name: com.example.Bar
+  method: bedazzle
+```
 
 ##### "Is Not Empty"
 
