@@ -194,6 +194,8 @@ This definition matches both `com.example.common.Util` and `com.example.uncommmo
 
 ##### "Contains"
 
+<img width="388" height="50" alt="image" src="https://github.com/user-attachments/assets/890ab424-f2e8-493b-8682-995cf28860c2" />
+
 A contains expression essentially combines the above "starts with" and "ends
 with" matches. Simply include a wildcard `.*` prefix and suffix around the
 desired string. For example, to match any class that contains the string
@@ -222,12 +224,10 @@ undesired results, regular expressionss should always be used with care.
 
 ##### "Is Not Empty"
 
+<img width="172" height="49" alt="image" src="https://github.com/user-attachments/assets/f5b81409-a7b4-4759-a9b4-4cb5a25f37be" />
 
-The following table maps POJO class matching to nocode expressions:
-
-| AppD predicate | Nocode expression | Nocode Example |
-+----------------+-------------------+----------------+
-
+I have no idea what this is, and I think it's unlikely that you have POJO rules that leverage this. If you do,
+please [reach out and let me know](jplumb@cisco.com).
 
 Class match predicates:
 <img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
