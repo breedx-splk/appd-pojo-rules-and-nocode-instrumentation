@@ -225,6 +225,8 @@ In addition to the precise "Equals" match, AppDynamics POJO definitions
 can use several other, more flexible matching prediates. This section
 will describe those and how to map them to `nocode` yaml definitions:
 
+<img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
+
 #### "Starts With"
 
 <img width="383" height="53" alt="image" src="https://github.com/user-attachments/assets/cfdbfdba-9f24-495e-9cf8-c9d0fcf1f3aa" />
@@ -311,8 +313,7 @@ POJOs. To do this with `nocode`, you can leverage the `or` logic operator :
 I have no idea what this is, and I think it's unlikely that you have POJO rules that leverage this. If you do,
 please [reach out and let me know](jplumb@cisco.com).
 
-Class match predicates:
-<img width="290" height="353" alt="image" src="https://github.com/user-attachments/assets/1968438e-0d3a-46db-adbe-006516f651e0" />
+---
 
 Method match predicates:
 <img width="419" height="267" alt="image" src="https://github.com/user-attachments/assets/11afd479-90c2-4528-8ff7-18f81c7c786d" />
