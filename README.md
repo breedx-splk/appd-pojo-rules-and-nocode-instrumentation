@@ -315,9 +315,19 @@ please [reach out and let me know](jplumb@cisco.com).
 
 ### Inverting the method name
 
+The AppDynamics POJO rule creation dialog contains a gear icon that hides the NOT capability:
 
 <img width="449" height="78" alt="image" src="https://github.com/user-attachments/assets/48a2e697-b298-4875-82df-fc571d710b37" />
 
+Choosing this allows you to invert the match for the method name. In other words, match all methods on the matched class(es) that do NOT satisfy the selection criteria. In `nocode`, you can use the `not` operator to do the same thing. For example, to match all methods whose name is not `swizzle`:
+
+```yaml
+- class: com.example.MyClass
+  method: 
+    not:
+      name: swizzle
+  span_kind: SERVER
+```
 
 ---
 
