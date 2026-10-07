@@ -257,7 +257,7 @@ string marker. For example, to match any class that ends with the name
 
 ```yaml
 - class:
-    name_regex: '.*common.Util$'
+    name_regex: '.*common\.Util$'
   method: beep
   span_kind: SERVER
 ```
