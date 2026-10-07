@@ -3,6 +3,25 @@
 
 Sometimes, you just have to do it the hard way.
 
+- [What's the Challenge?](#whats-the-challenge)
+- [Declarative Instrumentation](#declarative-instrumentation)
+- [The OTel Java Way](#the-otel-java-way)
+- [The Splunk OTel Way](#the-splunk-otel-way)
+- [Migrating from AppDynamics POJO rules](#migrating-from-appdynamics-pojo-rules)
+  - [What's in a POJO Rule?](#whats-in-a-pojo-rule)
+    - [Other Class Matches](#other-class-matches)
+      - [Matching by Interface](#matching-by-interface)
+      - [Matching by Superclass](#matching-by-superclass)
+      - [Matching by Annotation](#matching-by-annotation)
+    - [Other Matching Operations](#other-matching-operations)
+      - ["Starts With"](#starts-with)
+      - ["Ends With"](#ends-with)
+      - ["Contains"](#contains)
+      - ["Matches Reg Ex"](#matches-reg-ex)
+      - ["Is in List"](#is-in-list)
+      - ["Is Not Empty"](#is-not-empty)
+- [Conclusion](#conclusion)
+
 # What's the Challenge?
 
 Instrumentation agents are highly advanced bits of software that manipulate
