@@ -161,9 +161,40 @@ complete package name.
 
 <img width="385" height="117" alt="image" src="https://github.com/user-attachments/assets/67ae5fa6-fee2-4db0-8e52-f1e5b390692e" />
 
+You may have POJO rules that apply to all classes that implement
+an interface. When this is the case, use the `super_type` selector
+in your `nocode` definition. For example, to instrument all
+classes that implement the `com.example.SelectionStrategy` interface,
+use the following:
+
+```yaml
+- class:
+    super_type: com.example.SelectionStrategy
+  method: choose
+  span_kind: CLIENT
+```
+
+> _Note: It is not currently possible to perform non-exact matches with `super_type` class selectors in `nocode`_
+
 ##### Matching by Superclass
 
+Similar to the interface match (above), some POJO rules might match
+on a classes parentage or ancestry via "Super Class".
+
 <img width="378" height="116" alt="image" src="https://github.com/user-attachments/assets/2235323c-d788-42cf-b8d3-a54a229fb579" />
+
+In `nocode`, this is also accomplished with the `super_type` matcher.
+For example, to match all subclasses of `com.example.SuperServlet`, you 
+can use the following `nocode` YAML snippet:
+
+```yaml
+- class:
+    super_type: com.example.SuperServlet
+  method: serve
+  span_kind: SERVER
+```
+
+> _Note: It is not currently possible to perform non-exact matches with `super_type` class selectors in `nocode`_
 
 ##### Matching by Annotation
 
