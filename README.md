@@ -354,7 +354,7 @@ split Business Transactions.
 
 <img width="440" height="122" alt="image" src="https://github.com/user-attachments/assets/e46b0033-6b56-4e6b-bb80-5558dff2997a" />
 
-Because the OpenTelemetry and Splunk Observability Cloud data model use transactions and spans, Business Transactions are not applicable. Simply put, there is no way to split a "Business Transaction" in `nocode` because there are no Business Transactions. All Spans will either be the root span of a new Trace, or will be created within the existing trace context.
+Because the OpenTelemetry and Splunk Observability Cloud data models use transactions and spans, Business Transactions are not applicable. Simply put, there is no way to split a "Business Transaction" in `nocode` because there are no Business Transactions. All Spans will either be the root span of a new Trace, or will be created within the existing trace context.
 
 # Conclusion
 
