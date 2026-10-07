@@ -159,6 +159,8 @@ complete package name.
 
 ##### "Starts With"
 
+<img width="383" height="53" alt="image" src="https://github.com/user-attachments/assets/cfdbfdba-9f24-495e-9cf8-c9d0fcf1f3aa" />
+
 To perform a "Starts With" match in nocode, use a regular expression with the
 caret ('^') to match the start of the string, and use a wildcard through the end
 of the string. For example, to match any class that starts with the name
@@ -174,6 +176,8 @@ This definition matches both `com.example.FooBarImpl` and
 `com.example.FoodFight` classes.
 
 ##### "Ends With"
+
+<img width="386" height="51" alt="image" src="https://github.com/user-attachments/assets/66d27913-706b-4f24-a679-3bce599361a1" />
 
 To perform an "Ends With" match in nocode, use a regular expression that starts
 with a wildcard, then contains the desired string, and ends with the `$` end of
@@ -211,6 +215,8 @@ Because over-matching with overly broad match expressions could generate
 undesired results, regular expressionss should always be used with care.
 
 ##### "Is in List"
+
+<img width="383" height="75" alt="image" src="https://github.com/user-attachments/assets/971155bd-c916-48ef-99e3-053dcca3ad6d" />
 
 
 
