@@ -350,9 +350,11 @@ Choosing this allows you to invert the match for the method name. In other words
 ## What About Splitting?
 
 The "Add Rule" screen also has a section that allows AppDynamics users to
-split Business Transactions. Because the OpenTelemetry and Splunk Observability Cloud data model use transactions and spans, Business Transactions are not applicable.
+split Business Transactions. 
 
-Simply put, there is no way to split a "Business Transaction" in `nocode` because there are no Business Transactions. All Spans will either be the root span of a new Trace, or will be created within the existing trace context.
+<img width="440" height="122" alt="image" src="https://github.com/user-attachments/assets/e46b0033-6b56-4e6b-bb80-5558dff2997a" />
+
+Because the OpenTelemetry and Splunk Observability Cloud data model use transactions and spans, Business Transactions are not applicable. Simply put, there is no way to split a "Business Transaction" in `nocode` because there are no Business Transactions. All Spans will either be the root span of a new Trace, or will be created within the existing trace context.
 
 # Conclusion
 
