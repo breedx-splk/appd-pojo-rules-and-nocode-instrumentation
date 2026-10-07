@@ -125,13 +125,16 @@ This dialog allows you to define a POJO rule in the AppDynamics controller:
 
 <img width="596" height="674" alt="image" src="https://github.com/user-attachments/assets/21f55d22-6fc5-4f09-b5a1-491e2f5ac392" />
 
+It allows the user to choose what classes and methods should trigger the
+rule, and how those should be matched.
+
 If you simply want to match exactly on a given class and method name, the
 mapping to `nocode` is straightforward. For example, a class named `com.example.MyHotClass` with
 a method of `doSomething()` would appear like this in AppDynamics:
 
 <img width="375" height="223" alt="image" src="https://github.com/user-attachments/assets/a1cb8344-2a36-40bc-8fb1-7ce02c9b7c72" />
 
-and its `nocode` definition should be:
+and its `nocode` YAML definition should be:
 ```yaml
 - class: com.example.MyHotClass
   method: doScomething
@@ -140,16 +143,76 @@ and its `nocode` definition should be:
 
 _Note: It is highly recommended to provide the `span_kind`. This tells the Splunk Observability Cloud backend what [kind of span](https://opentelemetry.io/docs/concepts/signals/traces/#span-kind) this is._
 
+#### Other Class Name Matches
+
 Sometimes, POJOs are matched not purely on their exact class name,
-but on another characteristic:
+but on another operation or match predicate expression:
 
 <img width="283" height="223" alt="image" src="https://github.com/user-attachments/assets/3cae5791-3323-4e8f-b802-2bede254625e" />
 
-The [`nocode` documentation](https://github.com/signalfx/splunk-otel-java/tree/main/instrumentation/nocode#more-complex-classmethod-selection) covers these additional, more complicated cases.
+The [`nocode` documentation](https://github.com/signalfx/splunk-otel-java/tree/main/instrumentation/nocode#more-complex-classmethod-selection) covers these additional, more complicated cases, but we will provide examples here too.
+
+Please note that Java class names should always be fully qualified with the
+complete package name.
+
+> Note: Regular expressions in YAML should usually be surrounded with single quotes. Periods in package names sould be escaped with a backslash.
+
+##### "Starts With"
+
+To perform a "Starts With" match in nocode, use a regular expression with the
+caret ('^') to match the start of the string, and use a wildcard through the end
+of the string. For example, to match any class that starts with the name
+`com.example.Foo`, the `nocode` equivalent should be:
+
+```yaml
+- class:
+    name_regex: '^com\.example\.Foo.*'
+  method: bar
+```
+
+This definition matches both `com.example.FooBarImpl` and
+`com.example.FoodFight` classes.
+
+##### "Ends With"
+
+To perform an "Ends With" match in nocode, use a regular expression that starts
+with a wildcard, then contains the desired string, and ends with the `$` end of
+string marker. For example, to match any class that ends with the name
+`common.Util`, the `nocode` equivalent should be:
+
+```yaml
+- class:
+    name_regex: '.*common.Util$'
+  method: beep
+```
+
+This definition matches both `com.example.common.Util` and `com.example.uncommmon.Util` , but it would not match `com.example.common.Utilities`.
+
+
+##### "Contains"
+
+A contains expression essentially combines the above "starts with" and "ends
+with" matches. Simply include a wildcard `.*` prefix and suffix around the
+desired string. For example, to match any class that contains the string
+`FilterFactory`, you could use the following `nocode` YAML expression:
+
+```yaml
+- class:
+    name_regex: '.*FilterFactory.*'
+  method: filter
+```
+
+This would match `com.example.FilterFactory` and `com.example.AbstractFilterFactoryBaseImpl`.
+
+* Matches Reg Ex
+* Is in List
+* Is Not Empty
+
 
 The following table maps POJO class matching to nocode expressions:
 
-<<TODO>>
+| AppD predicate | Nocode expression | Nocode Example |
++----------------+-------------------+----------------+
 
 
 Class match predicates:
