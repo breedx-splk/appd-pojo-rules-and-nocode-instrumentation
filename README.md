@@ -325,7 +325,7 @@ For example, you might want to match both `com.example.Foo` and
 <img width="172" height="49" alt="image" src="https://github.com/user-attachments/assets/f5b81409-a7b4-4759-a9b4-4cb5a25f37be" />
 
 I have no idea what this is, and I think it's unlikely that you have POJO rules that leverage this. If you do,
-please [reach out and let me know](jplumb@cisco.com).
+please [reach out and let me know](mailto:jplumb@cisco.com).
 
 ### Inverting the Method Name
 
