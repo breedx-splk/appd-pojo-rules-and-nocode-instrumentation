@@ -20,6 +20,9 @@ Sometimes, you just have to do it the hard way.
       - ["Matches Reg Ex"](#matches-reg-ex)
       - ["Is in List"](#is-in-list)
       - ["Is Not Empty"](#is-not-empty)
+    - [Inverting the Method Name](#inverting-the-method-name)
+  - [What About Splitting?](#what-about-splitting)
+    - [`nocode` for existing spans](#nocode-for-existing-spans)
 - [Conclusion](#conclusion)
 
 # What's the Challenge?
