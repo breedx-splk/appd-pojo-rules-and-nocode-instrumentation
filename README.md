@@ -123,7 +123,7 @@ case, shut down the JVM or expose sensitive data.
 
 Users who are migrating from AppDynamics to Splunk Observability Cloud may wish
 to migrate their existing legacy POJO definitions. This can help to provide
-coverage in areas that are not readily covered with existing instrumentation in
+coverage in areas that are not readily handled by existing instrumentation in
 the Splunk OTel Java agent.
 
 It's important to first acknowledge that these two observability platforms use
